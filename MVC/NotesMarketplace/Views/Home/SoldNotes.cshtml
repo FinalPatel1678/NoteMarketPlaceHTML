@@ -2,8 +2,7 @@
 @using PagedList
 @using PagedList.Mvc
 @{
-	ViewBag.activelink_buyerrequest = "active-link";
-	ViewBag.Title = "Buyer Requests";
+	ViewBag.Title = "Sold Notes";
 	Layout = "~/Views/Shared/Register.cshtml";
 }
 
@@ -13,7 +12,7 @@
 			<div class="container">
 				<div class="row top-table">
 					<div class="col-12 col-sm-12 col-md-12 col-lg-6">
-						<h3>Buyer Requests</h3>
+						<h3>My Sold Notes</h3>
 					</div>
 					<div class="col-12 col-sm-12 col-md-12 col-lg-6">
 						<form>
@@ -39,13 +38,12 @@
 								<thead>
 									<tr style="cursor:default">
 										<th scope="col" class="align-middle text-center">SR NO.</th>
-										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("BuyerRequests","Home",new {shorthead="title",pageindex=Request.QueryString["pageindex"],seach=Request.QueryString["search"] })+"'");">NOTE TITLE</th>
-										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("BuyerRequests","Home",new {shorthead="category",pageindex=Request.QueryString["pageindex"],seach=Request.QueryString["search"] })+"'");">CATEGORY</th>
-										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("BuyerRequests","Home",new {shorthead="buyer",pageindex=Request.QueryString["pageindex"],seach=Request.QueryString["search"] })+"'");">BUYER</th>
-										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("BuyerRequests","Home",new {shorthead="phonenumber",pageindex=Request.QueryString["pageindex"],seach=Request.QueryString["search"] })+"'");">PHONE NO.</th>
+										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("SoldNotes","Home",new {shorthead="title",pageindex=Request.QueryString["pageindex"],search=Request.QueryString["search"] })+"'");">NOTE TITLE</th>
+										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("SoldNotes","Home",new {shorthead="category",pageindex=Request.QueryString["pageindex"],search=Request.QueryString["search"] })+"'");">CATEGORY</th>
+										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("SoldNotes","Home",new {shorthead="buyer",pageindex=Request.QueryString["pageindex"],search=Request.QueryString["search"] })+"'");">BUYER</th>
 										<th scope="col" class="align-middle">SELL TYPE</th>
-										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("BuyerRequests","Home",new {shorthead="price",pageindex=Request.QueryString["pageindex"],seach=Request.QueryString["search"] })+"'");">PRICE</th>
-										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("BuyerRequests","Home",new {shorthead="",pageindex=Request.QueryString["pageindex"],seach=Request.QueryString["search"] })+"'");">DOWNLOADED DATE/TIME</th>
+										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("SoldNotes","Home",new {shorthead="price",pageindex=Request.QueryString["pageindex"],search=Request.QueryString["search"] })+"'");">PRICE</th>
+										<th scope="col" class="align-middle dopointer" onclick="@("window.location.href='" + @Url.Action("SoldNotes","Home",new {shorthead="",pageindex=Request.QueryString["pageindex"],search=Request.QueryString["search"] })+"'");">DOWNLOADED DATE/TIME</th>
 										<th scope="col" class="align-middle"></th>
 										<th scope="col" class="align-middle"></th>
 										<th scope="col" class="align-middle"></th>
@@ -56,28 +54,43 @@
 									{
 										<tr> <td colspan="11" class="align-middle"> Records not found </td></tr>
 									}
-									@{
-										int index = 0;
+									@{ 
+										int index=0;
 										if (Request.QueryString["pageindex"] == null || Request.QueryString["pageindex"].Equals("1"))
 										{
 											index = 0;
 										}
 										else
 										{
-											index = Convert.ToInt32(Request.QueryString["pageindex"]) * 10;
+											index = Convert.ToInt32(Request.QueryString["pageindex"])*10;
 										}
 									}
 									@for (int i = 0; i < Model.Count(); i++)
 									{
 										NotesMarketplace.Models.DownloadRequests downloadedNote = Model[i];
+										
 										<tr style="cursor:default">
 
-											<td class="align-middle text-center">@(index+i+1)</td>
-											<td class="align-middle getpurple dopointer" onclick="@("window.location.href='" + @Url.Action("NoteDetails","Home",new {noteid=downloadedNote.downloadedNote.F_K_Note})+"'");">@downloadedNote.downloadedNote.Title</td>
+											<td class="align-middle text-center">@(index + i+1)</td>
+											<td class="align-middle getpurple dopointer" onclick="@("window.location.href='" + @Url.Action("NoteDetails", "Home", new { noteid = downloadedNote.downloadedNote.F_K_Note }) + "'");">@downloadedNote.downloadedNote.Title</td>
 											<td class="align-middle">@downloadedNote.downloadedNote.Category</td>
 											<td class="align-middle">@downloadedNote.emailid</td>
-											<td class="align-middle">@downloadedNote.phonenumber</td>
-											<td class="align-middle">Paid</td>
+											
+											@{ 
+												if (downloadedNote.downloadedNote.SellPrice != 0)
+												{
+													<td class="align-middle">
+													Paid
+													 </td>
+												}
+												else
+												{
+													<td class="align-middle">
+													Free
+														</td>
+													}
+												}
+
 											<td class="align-middle">$@downloadedNote.downloadedNote.SellPrice</td>
 											<td class="align-middle">@downloadedNote.downloadedNote.CreatedDate.Value.ToString("dd") @downloadedNote.downloadedNote.CreatedDate.Value.ToString("MMM") @downloadedNote.downloadedNote.CreatedDate.Value.ToString("yyyy"), @downloadedNote.downloadedNote.CreatedDate.Value.ToString("T")</td>
 											<td class="align-middle">
@@ -89,7 +102,7 @@
 														<i class="fa fa-ellipsis-v  dowhite"></i>
 													</a>
 													<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-														<a class="dropdown-item" href="@Url.Action("BuyerRequests","Home",new { reqid = downloadedNote.downloadedNote.ID, pageindex = Request.QueryString["pageindex"], search = Request.QueryString["search"], shorthead = Request.QueryString["shorthead"] })">Allow Download</a>
+														<a class="dropdown-item" href="@Url.Action("SoldNotes","Home",new { downloadid = downloadedNote.downloadedNote.F_K_Note, pageindex = Request.QueryString["pageindex"], search = Request.QueryString["search"], shorthead = Request.QueryString["shorthead"] })">Download Note</a>
 													</div>
 												</div>
 											</td>
@@ -105,19 +118,19 @@
 		</section>
 		<!-- Pagination -->
 		<section id="pagination">
-			@Html.PagedListPager(Model, pageindex => Url.Action("buyerRequests", "Home", new { pageindex}), new PagedList.Mvc.PagedListRenderOptions
-		{
-			ContainerDivClasses = null,
-			LiElementClasses = new string[] { "page-item1" },
-			UlElementClasses = new string[] { "pagination justify-content-center" },
-			LinkToNextPageFormat = "<i class='fa fa-chevron-right'></i>",
-			LinkToPreviousPageFormat = "<i class='fa fa-chevron-left'></i>",
-			MaximumPageNumbersToDisplay = 5,
-			DisplayEllipsesWhenNotShowingAllPageNumbers = false,
-			DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-			DisplayLinkToLastPage = PagedListDisplayMode.Never
+			@Html.PagedListPager(Model, pageindex => Url.Action("SoldNotes", "Home", new { pageindex, search=Request.QueryString["search"], shorthead=Request.QueryString["shorthead"] }), new PagedList.Mvc.PagedListRenderOptions
+	   {
+		   ContainerDivClasses = null,
+		   LiElementClasses = new string[] { "page-item1" },
+		   UlElementClasses = new string[] { "pagination justify-content-center" },
+		   LinkToNextPageFormat = "<i class='fa fa-chevron-right'></i>",
+		   LinkToPreviousPageFormat = "<i class='fa fa-chevron-left'></i>",
+		   MaximumPageNumbersToDisplay = 5,
+		   DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+		   DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+		   DisplayLinkToLastPage = PagedListDisplayMode.Never
 
-		})
+	   })
 		</section>
 	</div>
 </section>

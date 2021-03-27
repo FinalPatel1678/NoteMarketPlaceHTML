@@ -19,6 +19,8 @@ namespace NotesMarketplace
 
         public int ID { get; set; }
         public int F_K_User { get; set; }
+
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> DOB { get; set; }
 
         public string Gender { get; set; }

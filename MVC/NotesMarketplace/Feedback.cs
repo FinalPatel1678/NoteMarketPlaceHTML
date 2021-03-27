@@ -11,13 +11,16 @@ namespace NotesMarketplace
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Feedback
     {
         public int ID { get; set; }
         public int F_K_Note { get; set; }
         public int F_K_User { get; set; }
         public int Review { get; set; }
+
+        [Required]
         public string Comments { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<int> CreatedBy { get; set; }

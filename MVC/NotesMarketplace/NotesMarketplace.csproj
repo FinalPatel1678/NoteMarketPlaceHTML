@@ -183,11 +183,14 @@
     <Compile Include="ManageCTC.cs">
       <DependentUpon>Final.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\DownloadRequests.cs" />
-    <Compile Include="Models\DummyNotedetails.cs" />
-    <Compile Include="Models\DummyUser.cs" />
-    <Compile Include="Models\DummyUserProfile.cs" />
+    <Compile Include="Models\Feedbacks.cs" />
+    <Compile Include="Models\My_Downloads.cs" />
+    <Compile Include="Models\My_Dropdown.cs" />
+    <Compile Include="Models\My_Search.cs" />
+    <Compile Include="Models\SearchPageModel.cs" />
     <Compile Include="MyClass\RandomPassword.cs" />
     <Compile Include="NotesDetail.cs">
       <DependentUpon>Final.tt</DependentUpon>
@@ -360,7 +363,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\images\Dashboard\Thumbs.db" />
     <Content Include="Content\images\front\sample.pdf" />
@@ -404,6 +406,7 @@
     <Content Include="Uploads\Books\2127022021110855.pdf" />
     <Content Include="Uploads\ProfilePicture\21hfhbshvbadyig.PNG" />
     <Content Include="Uploads\ProfilePicture\23hfhbshvbadyig.PNG" />
+    <Content Include="Uploads\ProfilePicture\25hfhbshvbadyig.png" />
     <Content Include="Uploads\ProfilePicture\Default.png" />
     <None Include="Views\Home\BuyerRequests.cshtml" />
     <Content Include="Views\Home\InProgress.cshtml" />
@@ -453,6 +456,9 @@
     <None Include="Views\Home\Search.cshtml" />
     <None Include="Views\Home\NoteDetails.cshtml" />
     <Content Include="Views\Home\Submitted.cshtml" />
+    <Content Include="Views\Home\DownloadedNote.cshtml" />
+    <Content Include="Views\Home\RejectedNotes.cshtml" />
+    <None Include="Views\Home\SoldNotes.cshtml" />
     <None Include="Views\Home\UserProfile.cshtml" />
     <None Include="Views\Home\Home.cshtml" />
     <None Include="Views\Home\AddNotes.cshtml" />

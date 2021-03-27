@@ -70,6 +70,7 @@
 
                                             <!-- Calender icon -->
                                             <div class="wrapper">
+
                                                 @Html.TextBoxFor(m => m.DOB, new { @class = "form-control InputEmail1", @placeholder = "Enter your birth of date", @maxlength = "50",@type="date"})
                                                 <img class="dopointer" src="~/Content/images/user-profile/calendar.png" alt="show">
                                             </div>
@@ -87,9 +88,34 @@
 
                                             <select name="Gender" class="form-control inputselect">
                                                 <option>Select your gender</option>
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                                <option>Other</option>
+                                                @if (Model.Gender != null)
+                                                {
+                                                    if (Model.Gender.Equals("Male"))
+                                                    {
+                                                        <option selected>Male</option>
+                                                        <option>Female</option>
+                                                        <option>Other</option>
+                                                    }
+                                                    else if (Model.Gender.Equals("Female"))
+                                                    {
+
+                                                        <option>Male</option>
+                                                        <option selected>Female</option>
+                                                        <option>Other</option>
+                                                    }
+                                                    else if (Model.Gender.Equals("Other"))
+                                                    {
+                                                        <option>Male</option>
+                                                        <option>Female</option>
+                                                        <option selected>Other</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                    <option>Other</option>
+                                                }
                                             </select>
 
                                         </div>
@@ -112,11 +138,18 @@
                                                                     {
                                                                         if (item.F_K_CTC == 3)
                                                                         {
+                                                                            if (Model.CountryCode != null)
+                                                                            {
+                                                                                if (item.CountryCode.ToString().Equals(Model.CountryCode.ToString().Substring(1)))
+                                                                                {
+                                                                                    <option selected>+@item.CountryCode</option>
+                                                                                    continue;
+                                                                                }
+                                                                            }
                                                                             <option>+@item.CountryCode</option>
 
                                                                         }
                                                                     }
-
                                                                 }
                                                             </select>
 
@@ -141,7 +174,16 @@
 
                                                 <input type="file" name="File" accept="image/*" class="form-control InputEmail1"/>
                                                 <div class="uploadmypic text-center">
-                                                    <img class="img-fluid" src="~/Content/images/user-profile/upload.png">
+
+                                                    @if (ViewBag.ProfilePicture != null)
+                                                    {
+                                                        <img class="img-fluid" src ="~/Uploads/ProfilePicture/@ViewBag.ProfilePicture">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-fluid" src="~/Content/images/user-profile/upload.png">
+                                                    }
+
                                                     <h6>Upload a picture</h6>
                                                 </div>
                                                 <span class="field-validation-error">@ViewBag.ProfilePicture</span>
@@ -234,9 +276,19 @@
 
                                                     foreach (var item in getlist)
                                                     {
-                                                        if(item.F_K_CTC==3)
+                                                        if (item.F_K_CTC == 3)
                                                         {
-                                                           <option>@item.Value</option> 
+                                                            if (Model.Country != null)
+                                                            {
+                                                                if (Model.Country.Equals(item.Value))
+                                                                {
+                                                                    <option selected>@item.Value</option>
+                                                                    continue;
+
+                                                                }
+                                                            }
+                                                            <option>@item.Value</option>
+
                                                         }
                                                     }
 
@@ -290,7 +342,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Login Button -->
+                        @if(ViewBag.update!=null)
+                        {
+                            <input hidden  name="flag_update" value="updateme"/>
+                        }
                         <div class="row">
                             <div class="col-md-2 col-sm-12">
                                 <button type="submit" class="btn text-uppercase text-center" id="mybtn"><b>submit</b></button>

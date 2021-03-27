@@ -47,7 +47,7 @@ $(function () {
     });
 
     // Hide Mobile nav
-    $("#mobile-nav-close-btn, #mobile-nav a").click(function () {
+    $("#mobile-nav-close-btn").click(function () {
         $("#mobile-nav").css("height", "0");
     });
 

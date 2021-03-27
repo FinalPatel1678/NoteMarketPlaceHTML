@@ -10,9 +10,7 @@
     <section>
         <div id="user-profile-img">
             <div class="centerh2">
-
                 <h2>Add Notes</h2>
-
             </div>
         </div>
     </section>
@@ -405,16 +403,36 @@
                             </div>
                         </div>
                     </div>
+                    <input hidden name="NoteAttachment" value="@Model.NoteAttachment" />
                     @Html.TextBoxFor(m=>m.P_K_Note,new {@type="hidden"})
                     <!-- Login Button -->
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 col-6">
-                            <button type="submit" onclick=""@("window.location.href='" + @Url.Action("SaveNote", "Home") + "'") class="btn btn-primary btn-block login-btn text-uppercase text-center" id="mybtn"><b>save</b></button>
-                        </div>
-                        <div class="col-md-3 col-sm-6 col-6">
-                            <button type="submit" onclick=""@("window.location.href='" + @Url.Action("PublishNote", "Home") + "'") class="btn btn-primary btn-block login-btn text-uppercase text-center" id="mybtn"><b>Publish</b></button>
-                        </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-6">
+                        <button type="submit" name="btn" formaction="SaveNote" class="btn btn-primary btn-block login-btn text-uppercase text-center" id="mybtn"><b>save</b></button>
                     </div>
+                    <div class="col-md-3 col-sm-6 col-6">
+                        <button type="submit" name="btn" formaction="PublishNote" class="btn btn-primary btn-block login-btn text-uppercase text-center" id="mybtn"><b>Publish</b></button>
+                    </div>
+                   
+                    <!--<button id="btn-publish" type="button" class="btn btn-primary btn-head" name="command" value="publish" data-toggle="modal" data-target="#exampleModalLong">Publish</button>-->
+
+                    <!-- modal for publish note -->
+                    <!--<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="popup-head text-center">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to publish?</h5>
+                                </div>
+                                <div class="popup-content">
+                                    <p class="d-flex" style="color:black">Publishing this note will send note to administrator for review,once administrator review and approve then this note will be published to portal.Press yes to continue".</p>
+                                    <button class="btn btn-primary" type="submit" value="publish" name="command" id="btn-yes">yes</button>
+                                    <button id="cancel" type="button" class="btn btn-primary close-btn" name="updateStatus" value="cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
+                </div>
                 </div>
             </div>
 

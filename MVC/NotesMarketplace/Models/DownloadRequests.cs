@@ -9,7 +9,6 @@ namespace NotesMarketplace.Models
     {
         public DownloadedNote downloadedNote { get; set; }
         public String phonenumber { get; set; }
-        public String emailid { get; set; }
-         
+        public String emailid { get; set; }  
     }
 }

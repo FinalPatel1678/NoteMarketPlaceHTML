@@ -24,6 +24,8 @@ namespace NotesMarketplace
 
             bundles.Add(new ScriptBundle("~/bundles/mypopper").Include(
                       "~/Scripts/popper.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.min.js"));
         }
     }
 }

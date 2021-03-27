@@ -7,18 +7,28 @@ body {
     color:red;
     cursor:default;
 }
+.changpassword .InputPassword1 {
+    margin-bottom:0!important;
+}
 
 .duallcenter {
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .dopointer {
     cursor: pointer !important;
 }
 
+.d-grid{
+    display:grid !important;
+}
+
+.dowhiteonhower a:hover{
+    color:#ffffff !important;
+}
 textarea {
-    resize:none;
+    resize: none;
 }
 .InputPassword {
     border:1px solid red !important;
@@ -27,6 +37,7 @@ textarea {
 
 .bookpicture{
     height:300px;
+    width:inherit;
 }
 .notedesc {
     min-height:150px;
@@ -312,10 +323,15 @@ ul.navbar-nav > li > a:focus {
 }
 
     .white-nav-top ul.navbar-nav > li > a:hover,
-    .white-nav-top ul.navbar-nav > li > a:focus {
+    .white-nav-top ul.navbar-nav > li > a:focus
+    {
         border-bottom: 3px solid #6255a5;
         color: #6255a5;
     }
+.active-link {
+    border-bottom: 3px solid #6255a5;
+    color: #6255a5 !important;
+}
 
 .white-nav-top ul.navbar-nav > li > a {
     color: #000;
@@ -989,8 +1005,8 @@ select.form-control {
     color: #ffc107;
 }
 
-/*.rate:not(:checked) > label:hover,*/
-/*.rate:not(:checked) > label:hover ~ label */
+.rate.addhover:not(:checked) > label:hover,
+.rate.addhover:not(:checked) > label:hover ~ label 
 .rate .dorate {
         color: #ffc107 !important;
     }
@@ -1002,72 +1018,100 @@ select.form-control {
 .rate > label:hover ~ input:checked ~ label {
     color: #ffc107;
 }
-
-page-item1 {
-    padding: 5px 5px;
-    margin-left: 6px;
+.dorate {
+    color: #ffc107 !important;
 }
 
-.page-item1 a {
-    border: none;
-    padding: 5px 5px;
-}
 
-    .page-item1 a:hover,
-    .page-item1 a:focus,
-    ul.pagination .active {
-        text-decoration: none;
-        background-color: #6255a5;
-        text-align: center;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-    }
-
-ul.pagination .active {
-    color: white !important;
-}
-.btn-pagination {
-    color: white !important;
-}
-
-ul.pagination > li > a:hover,
-ul.pagination > li > a:focus {
-    color: white;
-}
-
-ul.pagination > li > a {
-    color: #333333;
-    font-family: "Open Sans";
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    margin: 0 3px;
-}
-
-./*pagination {
+#pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
     margin-bottom: 60px;
 }
 
-.pagination li a {
-    color: #333333;
-    font-family: "Open Sans", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
-    margin: 0 5px;
-    border: none;
-}
 
-.pagination .selected a {
-    background: #6255a5;
-    color: #fff;
-    font-size: 16px;
-    border-radius: 50%;
-    line-height: 20px;
+    #pagination ul.pagination {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        vertical-align: middle;
+        margin: 0;
+    }
 
-}*/
+    #pagination ul li {
+        list-style: none;
+        line-height: 30px;
+        padding: 0;
+    }
 
+        #pagination ul li.page-item1 {
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        #pagination ul li a {
+            display: block;
+            text-decoration: none;
+            color: #333333;
+            font-weight: 600;
+            border-radius: 50%;
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+        }
+
+        #pagination ul li.page-item1 a {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        #pagination ul li.page-item1:hover a,
+        #pagination ul li.page-item1.active a {
+            background: #6255a5;
+            color: #fff;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        #pagination ul li:first-child {
+            /*    margin: 0 25px 0 0;*/
+            font-weight: 600;
+            font-size: 20px;
+            /*    width: 8px;*/
+            height: 15px;
+            padding: 0;
+        }
+
+        #pagination ul li:last-child {
+            /*    margin: 0 0 0 25px;*/
+            font-weight: 600;
+            font-size: 20px;
+            /*    width: 8px;*/
+            height: 15px;
+            padding: 0;
+        }
+
+        #pagination ul li.page-item1 {
+            margin: 0 2px;
+        }
+
+        #pagination ul li.PagedList-skipToPrevious {
+            margin: 0 10px 0 0;
+        }
+
+        #pagination ul li.PagedList-skipToNext {
+            margin: 0 0 0 10px;
+        }
 
 /*===============================
             Notes Details
@@ -1126,11 +1170,16 @@ ul.pagination > li > a {
     border: 1px solid #d1d1d1;
     border-radius: 3px;
     padding: 30px;
+    height:500px;
+    overflow:scroll;
 }
+    #notes-details-second-section .customer-reviews p{
+        overflow-wrap:break-word;
+    }
 
-#notes-details-second-section {
-    margin-bottom: 60px;
-}
+    #notes-details-second-section {
+        margin-bottom: 60px;
+    }
 
 #notes-details-first-section p {
     margin-bottom: 10px;
