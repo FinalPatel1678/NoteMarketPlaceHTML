@@ -11,12 +11,15 @@ namespace NotesMarketplace
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ManageCTC
     {
         public int ID { get; set; }
         public int F_K_CTC { get; set; }
+        [Required(ErrorMessage ="Required...")]
         public string Value { get; set; }
+        [Required(ErrorMessage = "Required...")]
         public string Description { get; set; }
         public Nullable<int> CountryCode { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
